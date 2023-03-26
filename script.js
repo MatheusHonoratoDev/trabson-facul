@@ -47,6 +47,7 @@ function addMessage(message, type) {
         clearInterval(loopDeTexto);
         chatbotMessage.classList.remove("pulsating-cursor");
         input.disabled = false;
+        input.focus() 
       }
     }, 50);
   } else {
