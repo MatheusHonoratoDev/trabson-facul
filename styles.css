@@ -136,3 +136,59 @@ h3{
 body{
   background-color: black;
 }
+
+@media (max-width: 768px) {
+  .chatbot {
+    height: 100vh;
+    width: 100vw;
+    border-radius: 0;
+    box-shadow: none;
+  }
+
+  .chatbot-body {
+    height: 100%;
+    padding: 0;
+  }
+
+  .chatbot-messages {
+    width: 100%;
+  }
+
+  .chatbot-message.bot {
+    margin: 5px 5px 5px 0;
+    width: 100%;
+  }
+
+  .chatbot-message.user {
+    margin: 14px 5px 22px 0;
+    width: 100%;
+  }
+
+  .chatbot-input {
+    margin-top: 20px;
+    padding: 0 10px;
+  }
+
+  .chatbot-input input {
+    padding: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .chatbot-messages {
+    font-size: 12px;
+  }
+
+  .chatbot-message {
+    padding: 2px 5px;
+    font-size: 14px;
+  }
+
+  .chatbot-message.bot {
+    width: 80%;
+  }
+
+  .chatbot-message.user {
+    width: 80%;
+  }
+}
