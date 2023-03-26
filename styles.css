@@ -1,10 +1,36 @@
+*::-webkit-scrollbar{
+  width: 12px;
+}
+*::-webkit-scrollbar-track{
+  background-color: #444;
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: #000000;
+  border-radius: 20px;
+  border: 3px solid rgb(255, 255, 255);
+}
+
+h3{
+  color: white ;
+  font-size: 40px;
+  margin-top: 0px ;
+  border-bottom: 3px dashed white;
+}
+
+
+
+
 .chatbot {
-  background-color: black;
   border-radius: 10px;
   box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
-  height: 400px;
+  height: 100%;
   overflow: hidden;
-  width: 300px;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 .chatbot-header {
@@ -27,6 +53,8 @@
 .chatbot-messages {
   flex: 1;
   overflow-y: auto;
+  width: 570px;
+
 }
 
 @keyframes blink {
@@ -64,15 +92,24 @@
 
 .chatbot-message.bot {
   margin: 5px 15px 5px 5px;
+  padding-bottom: 20px;
+  width: 290px;
 }
 
 .chatbot-message.user {
-  background-color: #3f51b5;
-  margin: 5px 5px 5px 15;
+  background-color: #752a78;
+  margin: 14px 14px 22px 224px;
+  padding-bottom: 20px;
+  border: none;
+  width: 290px;
 }
+
+
 
 .chatbot-input {
   display: flex;
+  margin-top: 30px;
+
 }
 
 .chatbot-input input {
@@ -81,6 +118,9 @@
   flex: 1;
   margin-right: 10px;
   padding: 10px;
+  background-color: #111;
+  color: #ddd;
+  border: white 1px solid;
 }
 
 .chatbot-input button {
@@ -90,4 +130,9 @@
   color: #fff;
   cursor: pointer;
   padding: 10px;
+}
+
+
+body{
+  background-color: black;
 }

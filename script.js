@@ -2,27 +2,27 @@ const chatbotMessages = document.querySelector(".chatbot-messages");
 const chatbotInput = document.querySelector(".chatbot-input input");
 const chatbotButton = document.querySelector(".chatbot-input button");
 let etapaAtual = "mensagem-inicial";
+let input = document.querySelector("#teste");
 
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("Etapa atual:", localStorage.getItem("etapa-atual"))
-  console.log("Histórico:", localStorage.getItem("historico-conversa"))
+  console.log("Etapa atual:", localStorage.getItem("etapa-atual"));
+  console.log("Histórico:", localStorage.getItem("historico-conversa"));
   addMessage(
     `Deseja comecar o jogo?\n========================\n[1] Iniciar\n[2] Fechar\n[3] Continuar`,
     "bot"
   );
-
 });
 
 chatbotButton.addEventListener("click", () => {
-  const userMessage = `${chatbotInput.value}`;
-  const botMessage = getBotMessage(userMessage); 
+  const userMessage = `${chatbotInput.value}`.toUpperCase();
+  const botMessage = getBotMessage(userMessage);
 
   if (chatbotInput != "") {
-    addMessage("CD:// " + userMessage, "user");
+    addMessage("CD:\\User> " + userMessage, "user");
     addMessage(botMessage, "bot");
   }
-  if(userMessage == 3){
-    alert("Legal, vou carregar o histórico")
+  if (userMessage == 3) {
+    alert("Legal, vou carregar o histórico");
   }
   chatbotInput.value = "";
 });
@@ -39,14 +39,16 @@ function addMessage(message, type) {
 
   if (type == "bot") {
     let tempText = "";
+    input.disabled = true;
     let loopDeTexto = setInterval(() => {
       tempText += message[tempText.length];
       chatbotMessage.textContent = tempText;
       if (tempText == message) {
         clearInterval(loopDeTexto);
         chatbotMessage.classList.remove("pulsating-cursor");
+        input.disabled = false;
       }
-    }, 100);
+    }, 50);
   } else {
     chatbotMessage.textContent = message;
   }
@@ -54,34 +56,43 @@ function addMessage(message, type) {
   chatbotMessages.appendChild(chatbotMessage);
   chatbotMessages.scrollTop = chatbotMessages.scrollHeight;
 
-  localStorage.setItem('etapa-atual', etapaAtual);
-  localStorage.setItem('historico-conversa', JSON.stringify(["teste", "teste"]));
+  localStorage.setItem("etapa-atual", etapaAtual);
+  localStorage.setItem(
+    "historico-conversa",
+    JSON.stringify(["teste", "teste"])
+  );
 }
 
 function getBotMessage(message) {
   switch (etapaAtual) {
-    case 'mensagem-inicial':
-      if(message == "1") {
+    case "mensagem-inicial":
+      if (message == "1") {
         etapaAtual = "fase-1";
-        return "Bora comer capim!"
+        return "Bora comer capim!";
       }
-      if(message == "2") {
+      if (message == "2") {
         etapaAtual = "fim";
-        return "O jogo acabou, você perdeu"
+        return "O jogo acabou, você perdeu";
+      } else {
+        return "Tem parada errada ai, pfv esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar";
       }
       break;
     case "fim":
       return "O jogo já acabou cara, supera";
       break;
-    case "fase-1": 
-      if(message == 'sim'){
-        etapaAtual = "fase-2"
-        return "hmmmm capinzinho bao"
+    case "fase-1":
+      //while(etapaAtual == false){
+      if (message == "sim") {
+        etapaAtual = false;
+        return "hmmmm capinzinho bao";
+      } else {
+        etapaAtual = "ta-errado";
+        return "mensagem nao encontrada";
+        //  }
       }
       break;
     default:
-      return "eu não entendi mano"
+      return "eu não entendi mano";
       break;
   }
-  
 }
