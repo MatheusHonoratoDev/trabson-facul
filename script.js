@@ -14,7 +14,7 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 chatbotButton.addEventListener("click", () => {
-  const userMessage = `${chatbotInput.value}`.toUpperCase();
+  const userMessage = `${chatbotInput.value}`;
   const botMessage = getBotMessage(userMessage);
 
   if (chatbotInput != "") {
@@ -68,29 +68,45 @@ function getBotMessage(message) {
     case "mensagem-inicial":
       if (message == "1") {
         etapaAtual = "fase-1";
-        return "Bora comer capim!";
+        return "Bora comer capim! [1]sim [2]nao";
       }
       if (message == "2") {
         etapaAtual = "fim";
         return "O jogo acabou, você perdeu";
-      } else {
+      } 
+      else {
         return "Tem parada errada ai, pfv esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar";
       }
       break;
+
     case "fim":
       return "O jogo já acabou cara, supera";
       break;
     case "fase-1":
-      //while(etapaAtual == false){
-      if (message == "sim") {
-        etapaAtual = false;
-        return "hmmmm capinzinho bao";
-      } else {
-        etapaAtual = "ta-errado";
-        return "mensagem nao encontrada";
-        //  }
+
+      if (message == "1") {
+        etapaAtual = "fase-2";
+        return "hmmmm capinzinho bao quer mais?";
+      } 
+      if (message == "2"){
+        return "fela diz sim"
       }
+      else{
+        return "mensagem nao encontrada";
+      }
+    
       break;
+
+    case "fase-2":
+
+    if (message == "sim") {
+      etapaAtual = "fase-3";
+      return "hmmmmmm eita capinzinho bao";
+    } else {
+      return "mensagem nao encontrada";
+    }
+    break;
+
     default:
       return "eu não entendi mano";
       break;
