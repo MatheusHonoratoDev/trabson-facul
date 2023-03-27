@@ -81,8 +81,29 @@ function getBotMessage(message) {
       break;
 
     case "fim":
+      etapaAtual = "continua"
       return "O jogo já acabou cara, supera";
       break;
+    case "continua":
+      etapaAtual = "desenho"
+      return "voce esta insistindo muito, realmente quer continuar? [Digite sim ou nao]"  
+    break
+
+    case "desenho":
+      if (message == 'sim'){
+        etapaAtual = "comecar"
+      return `
+      ───▄█▌─▄─▄─▐█▄
+      ───██▌▀▀▄▀▀▐██
+      ───██▌─▄▄▄─▐██
+      ───▀██▌▐█▌▐██▀
+      ▄██████─▀─██████▄
+         CARREGANDO...`}
+        else {
+          etapaAtual = "mensagem-inicial"
+          return "desistiu ne? se cagou de medo... \npfv esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar"
+        }
+    break
     case "fase-1":
 
       if (message == "1") {
@@ -101,13 +122,17 @@ function getBotMessage(message) {
     case "fase-2":
 
     if (message == "sim") {
-      etapaAtual = "fase-3";
-      return "hmmmmmm eita capinzinho bao";
+      etapaAtual = "mensagem-inicial";
+      return "hmmmmmm eita capinzinho bao \nacabou o jogo parceiro. \n esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar";
     } else {
-      return "mensagem nao encontrada";
+      return "mensagem nao encontrada \nhmmmm capinzinho bao quer mais?";
     }
     break;
 
+    case "fase-3":
+      etapaAtual = "mensagem-inicial";
+      return "acabou o jogo parceiro.\n esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar"
+    break;
     default:
       return "eu não entendi mano";
       break;
