@@ -109,11 +109,21 @@ function getBotMessage(message) {
       ───██▌─▄▄▄─▐██
       ───▀██▌▐█▌▐██▀
       ▄██████─▀─██████▄
-         CARREGANDO...`}
+         CARREGANDO...
+
+          Voce agora se encontra dentro de uma casa, as unicas 
+          encontradas são uma porta que leva para saida, outra porta
+          que leva para um outro comodo, ou uma escada que leva ao andar
+          de cima, onde deseja ir. Digite: [Sair] [Subir] [Direita]
+         `}
+
         else {
           etapaAtual.etapa = "mensagem-inicial"
           return "desistiu ne? se cagou de medo... \npfv esolha uma opção:\n---------------------------\n[1] Iniciar\n[2] Fechar\n[3] Continuar"
         }
+    break
+    case "comecar":    
+      
     break
     case "fase-1":
 
